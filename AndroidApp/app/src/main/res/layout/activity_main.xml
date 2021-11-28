@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constrainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_700"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:subtitleTextColor="@android:color/background_light"
+        app:title="TheHackBot Control"
+        app:titleTextColor="@android:color/background_light" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="24dp"
+        android:background="@color/colorOff"
+        android:contentDescription="@string/visual_led"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_led"
+        tools:ignore="VectorDrawableCompat" />
+
+    <Button
+        android:id="@+id/buttonConnect"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connect"
+        android:textColor="@color/colorOff"
+        app:layout_constraintBottom_toBottomOf="@+id/actionBar"
+        app:layout_constraintEnd_toEndOf="@+id/actionBar"
+        app:layout_constraintTop_toTopOf="@+id/actionBar" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.155" />
+
+    <TextView
+        android:id="@+id/textViewInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="16dp"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Down" />
+
+    <ImageButton
+        android:id="@+id/About"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/colorOff"
+        android:contentDescription="@string/about"
+        android:paddingHorizontal="2dp"
+        android:paddingVertical="2dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintRight_toRightOf="@id/actionBar"
+        app:layout_constraintTop_toBottomOf="@+id/actionBar"
+        app:srcCompat="@drawable/ic_about"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/Up"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/colorOff"
+        android:contentDescription="@string/up"
+        android:rotation="90"
+        android:scaleType="fitCenter"
+        app:layout_constraintLeft_toLeftOf="@id/actionBar"
+        app:layout_constraintRight_toRightOf="@id/actionBar"
+        app:layout_constraintTop_toBottomOf="@id/actionBar"
+        app:srcCompat="@drawable/ic_left"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/Left"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="28dp"
+        android:background="@color/colorOff"
+        android:contentDescription="@string/left"
+        android:rotationX="0"
+        android:rotationY="0"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@id/Down"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Up"
+        app:srcCompat="@drawable/ic_left"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/Right"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/colorOff"
+        android:contentDescription="@string/right"
+        android:rotation="180"
+        android:rotationX="0"
+        android:rotationY="0"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@id/Down"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="@id/actionBar"
+        app:layout_constraintTop_toBottomOf="@id/Up"
+        app:srcCompat="@drawable/ic_left"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/Down"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:background="@color/colorOff"
+        android:contentDescription="@string/down"
+        android:rotation="-90"
+        android:rotationX="0"
+        android:rotationY="0"
+        android:scaleType="fitCenter"
+        app:layout_constraintLeft_toLeftOf="@id/Up"
+        app:layout_constraintTop_toBottomOf="@id/Up"
+        app:srcCompat="@drawable/ic_left"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/Stop"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/colorOff"
+        android:contentDescription="Stop"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@id/Down"
+        app:layout_constraintHorizontal_bias="0.554"
+        app:layout_constraintLeft_toRightOf="@id/Left"
+        app:layout_constraintRight_toLeftOf="@id/Right"
+        app:layout_constraintTop_toTopOf="@id/Up"
+        app:srcCompat="@drawable/ic_stop"
+        tools:ignore="HardcodedText,ImageContrastCheck" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
