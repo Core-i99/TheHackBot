@@ -25,6 +25,7 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Locale;
 import java.util.UUID;
 
 import static android.content.ContentValues.TAG;
@@ -41,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private final static int CONNECTING_STATUS = 1; // used in bluetooth handler to identify message status
     private final static int MESSAGE_READ = 2; // used in bluetooth handler to identify message update
     private ImageButton About;
-    private ImageButton Up;
-    private ImageButton Stop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,26 +56,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Up = (ImageButton) findViewById(R.id.Up);
-        Up.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                connectedThread.write("<turn on>");
-                Log.e("Status", "Send turn on");
-            }
-        });
-
-        Stop = (ImageButton) findViewById(R.id.Stop);
-        Stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                connectedThread.write("<turn off>");
-                Log.e("Status", "Send turn off");
-            }
-        });
 
         // UI Initialization
         final Button buttonConnect = findViewById(R.id.buttonConnect);
+        final ImageButton UpButton = findViewById(R.id.UpButton);
+        UpButton.setEnabled(false);
+        final ImageButton StopButton = findViewById(R.id.Stop);
+        StopButton.setEnabled(false);
+        final ImageButton LeftButton = findViewById(R.id.Left);
+        LeftButton.setEnabled(false);
+        final ImageButton RightButton = findViewById(R.id.Right);
+        RightButton.setEnabled(false);
+        final ImageButton DownButton = findViewById(R.id.Down);
+        DownButton.setEnabled(false);
+
         final Toolbar toolbar = findViewById(R.id.actionBar);
 
         //set the toolbar subtitle
@@ -125,6 +118,13 @@ public class MainActivity extends AppCompatActivity {
                                 toolbar.setSubtitle("Connected to " + deviceName);
                                 progressBar.setVisibility(View.GONE);
                                 buttonConnect.setEnabled(true);
+
+                                //set certain buttons to enabled. A bluetooth connection is made now and the app won't crash when ticking it.
+                                UpButton.setEnabled(true);
+                                StopButton.setEnabled(true);
+                                LeftButton.setEnabled(true);
+                                RightButton.setEnabled(true);
+                                DownButton.setEnabled(true);
                                 break;
                             case -1:
                                 toolbar.setSubtitle("Device fails to connect");
@@ -136,8 +136,9 @@ public class MainActivity extends AppCompatActivity {
 
                     case MESSAGE_READ:
                         String arduinoMsg = msg.obj.toString(); // Read message from Arduino
+
                         switch (arduinoMsg.toLowerCase()){
-                            case "led is turned on":
+                            case "led is turned on": //we only use these cases to set the background color to enabled or not
                                 imageView.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
@@ -153,6 +154,51 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+
+        //upButton
+        UpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                connectedThread.write("<turn on>");
+                Log.e("Status", "Ticked turn on");
+            }
+        });
+
+        //Stop Button
+        StopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                connectedThread.write("<turn off>");
+                Log.e("Status", "Ticked turn off");
+            }
+        });
+
+        //leftButton
+        LeftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                connectedThread.write("<left>");
+                Log.e("Status", "Ticked left");
+            }
+        });
+
+        //Right Button
+        RightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                connectedThread.write("<right>");
+                Log.e("Status", "Ticked right");
+            }
+        });
+
+        //Down Button
+        DownButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                connectedThread.write("<down>");
+                Log.e("Status", "Ticked down");
+            }
+        });
 
         // Select Bluetooth Device
         buttonConnect.setOnClickListener(new View.OnClickListener() {

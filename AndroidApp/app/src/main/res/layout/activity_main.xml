@@ -50,15 +50,11 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+        style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.155" />
+        app:layout_constraintLeft_toLeftOf="@id/actionBar"
+        app:layout_constraintTop_toBottomOf="@id/actionBar" />
 
     <TextView
         android:id="@+id/textViewInfo"
@@ -85,11 +81,10 @@
         android:scaleType="fitCenter"
         app:layout_constraintRight_toRightOf="@id/actionBar"
         app:layout_constraintTop_toBottomOf="@+id/actionBar"
-        app:srcCompat="@drawable/ic_about"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+        app:srcCompat="@drawable/ic_about" />
 
     <ImageButton
-        android:id="@+id/Up"
+        android:id="@+id/UpButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
@@ -115,7 +110,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@id/Down"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Up"
+        app:layout_constraintTop_toBottomOf="@id/UpButton"
         app:srcCompat="@drawable/ic_left"
         tools:ignore="ImageContrastCheck" />
 
@@ -133,7 +128,7 @@
         app:layout_constraintBottom_toTopOf="@id/Down"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="@id/actionBar"
-        app:layout_constraintTop_toBottomOf="@id/Up"
+        app:layout_constraintTop_toBottomOf="@id/UpButton"
         app:srcCompat="@drawable/ic_left"
         tools:ignore="ImageContrastCheck" />
 
@@ -148,8 +143,8 @@
         android:rotationX="0"
         android:rotationY="0"
         android:scaleType="fitCenter"
-        app:layout_constraintLeft_toLeftOf="@id/Up"
-        app:layout_constraintTop_toBottomOf="@id/Up"
+        app:layout_constraintLeft_toLeftOf="@id/UpButton"
+        app:layout_constraintTop_toBottomOf="@id/UpButton"
         app:srcCompat="@drawable/ic_left"
         tools:ignore="ImageContrastCheck" />
 
@@ -164,7 +159,7 @@
         app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintLeft_toRightOf="@id/Left"
         app:layout_constraintRight_toLeftOf="@id/Right"
-        app:layout_constraintTop_toTopOf="@id/Up"
+        app:layout_constraintTop_toTopOf="@id/UpButton"
         app:srcCompat="@drawable/ic_stop"
         tools:ignore="HardcodedText,ImageContrastCheck" />
 
