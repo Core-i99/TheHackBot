@@ -3,6 +3,7 @@ package com.example.thehackbotcontrol;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.ViewUtils;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -91,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
             // Get the device address to make BT Connection
             deviceAddress = getIntent().getStringExtra("deviceAddress");
             // Show progree and connection status
-            toolbar.setSubtitle("Connecting to " + deviceName + "...");
+            toolbar.setSubtitle("Connecting to " + deviceName);
+            StopButton.setVisibility(View.INVISIBLE);
             progressBar.setVisibility(View.VISIBLE);
             buttonConnect.setEnabled(false);
 
@@ -113,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
             public void handleMessage(Message msg){
                 switch (msg.what){
                     case CONNECTING_STATUS:
+                        StopButton.setVisibility(View.VISIBLE);
                         switch(msg.arg1){
                             case 1:
                                 toolbar.setSubtitle("Connected to " + deviceName);
@@ -125,11 +128,13 @@ public class MainActivity extends AppCompatActivity {
                                 LeftButton.setEnabled(true);
                                 RightButton.setEnabled(true);
                                 DownButton.setEnabled(true);
+
                                 break;
                             case -1:
                                 toolbar.setSubtitle("Device fails to connect");
                                 progressBar.setVisibility(View.GONE);
                                 buttonConnect.setEnabled(true);
+
                                 break;
                         }
                         break;

@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#FF3700B3</color>
     <color name="colorPrimaryDark">#FF3700B3</color>
-    <color name="colorAccent">#E040FB</color>
+    <color name="colorAccent">#FFE91E1E</color>
     <color name="colorOff">#FFFFFF</color>
     <color name="colorOn">#E040FB</color>
 </resources>
