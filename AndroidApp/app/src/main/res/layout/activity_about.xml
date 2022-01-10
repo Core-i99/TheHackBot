@@ -52,7 +52,7 @@
         android:id="@+id/aboutText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="This app is written on a Hackintosh using Android Studio\n\n  ©TheHackGuy - 2021 \n "
+        android:text="App written on a Hackintosh\n\n  ©TheHackGuy - 2021 \n "
         android:textAlignment="center"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
