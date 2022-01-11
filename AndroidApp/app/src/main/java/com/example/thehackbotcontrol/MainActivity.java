@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         StopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                connectedThread.write("<stop");
+                connectedThread.write("<stop>");
                 Log.e("Status", "Ticked stop");
             }
         });
