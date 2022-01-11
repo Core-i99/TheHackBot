@@ -1,5 +1,8 @@
+/*
+HC05 - Bluetooth module
+© Stijn Rombouts - 2021
+*/
 package com.example.thehackbotcontrol;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
