@@ -124,48 +124,49 @@ public class MainActivity extends AppCompatActivity {
                                 toolbar.setSubtitle("Connected to " + deviceName);
                                 progressBar.setVisibility(View.GONE);
                                 buttonConnect.setEnabled(true);
-
-                                //set certain buttons to enabled. A bluetooth connection is made now and the app won't crash when ticking it.
                                 UpButton.setEnabled(true);
                                 StopButton.setEnabled(true);
                                 LeftButton.setEnabled(true);
                                 RightButton.setEnabled(true);
                                 DownButton.setEnabled(true);
-
                                 break;
                             case -1:
                                 toolbar.setSubtitle("Device fails to connect");
                                 progressBar.setVisibility(View.GONE);
                                 buttonConnect.setEnabled(true);
-
                                 break;
                         }
                         break;
 
                     case MESSAGE_READ:
                         String arduinoMsg = msg.obj.toString(); // Read message from Arduino
-
                         switch (arduinoMsg.toLowerCase()){
-                            case "LEDUP is turned on": //we only use these cases to set the background color to enabled or not
-                                //imageView.setBackgroundColor(getResources().getColor(R.color.colorOn));
+                            case "ledup is turned on":
+                                StopButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 UpButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
-                            case "LEDLEFT is turned on": //we only use these cases to set the background color to enabled or not
+                            case "ledleft is turned on":
+                                StopButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 LeftButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
-                            case "LEDRIGHT is turned on": //we only use these cases to set the background color to enabled or not
+                            case "ledright is turned on":
+                                StopButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 RightButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
-                            case "LEDDOWN is turned on": //we only use these cases to set the background color to enabled or not
+                            case "leddown is turned on":
+                                StopButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 DownButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
-                            case "LED's are turned off":
+                            case "led's are turned off":
                                 StopButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
-                                //imageView.setBackgroundColor(getResources().getColor(R.color.colorOff));
+                                UpButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
+                                LeftButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
+                                RightButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
+                                DownButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
                         }
@@ -179,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 connectedThread.write("<up>");
-                Log.e("Status", "Ticked up");
+                Log.e("Status", "Ticked turn on");
             }
         });
 
@@ -187,8 +188,8 @@ public class MainActivity extends AppCompatActivity {
         StopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                connectedThread.write("<stop");
-                Log.e("Status", "Ticked stop");
+                connectedThread.write("<stop>");
+                Log.e("Status", "Ticked turn off");
             }
         });
 
