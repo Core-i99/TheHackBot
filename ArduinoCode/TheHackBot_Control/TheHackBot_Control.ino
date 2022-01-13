@@ -6,15 +6,14 @@ HC05 - Bluetooth module
 #include <SoftwareSerial.h>
 SoftwareSerial MyBTModule(3, 2); // RX & TX pins
 
-const int LEDUP = 12; // Built in LED in Arduino board
-const int LEDLEFT = 11;
-const int LEDRIGHT = 10;
-const int LEDDOWN = 9;
+const int ledPin = 13; // Built in LED in Arduino board
+
 String msg, cmd;
 
 void setup() {
   // Initialization
-  pinMode(LEDUP, OUTPUT);
+  pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, LOW);
   MyBTModule.begin(9600);
   Serial.begin(9600); // Communication rate of the Bluetooth Module
   msg = "";
@@ -28,36 +27,30 @@ void loop() {
     Serial.println("Android Command: " + msg);
   }
 
-  // Control LED in Arduino board
+  //TODO: make switch
   if (msg == "<up>") {
-    digitalWrite(LEDUP, 1); // Turn on LED
+    digitalWrite(ledPin, HIGH); // Turn on LED
     MyBTModule.println("LEDUP is turned on\n"); // Then send status message to Android
     msg = ""; // reset command
   }
-
-  if (msg == "<stop>") {
-    digitalWrite(LEDUP, 0); // Turn off LED
-    digitalWrite(LEDLEFT, 0);
-    digitalWrite(LEDRIGHT, 0);
-    digitalWrite(LEDDOWN, 0);
-    MyBTModule.println("LED's are turned off\n");
-    msg = ""; // reset command
-  }
-  if (msg == "<down>") {
-    digitalWrite(LEDDOWN, 1);
-    MyBTModule.println("LEDDOWN is turned on\n"); // Then send status message to Android
-    msg = ""; // reset command
-  }
-  if (msg == "<left>") {
-    digitalWrite(LEDLEFT, 1);
+  else if (msg == "<left>") {
+    digitalWrite(ledPin, HIGH); // Turn on LED
     MyBTModule.println("LEDLEFT is turned on\n"); // Then send status message to Android
     msg = ""; // reset command
   }
-  if (msg == "<right>") {
-    digitalWrite(LEDRIGHT, 1);
-    MyBTModule.println("LEDDRIGHT is turned on\n"); // Then send status message to Android
+  else if (msg == "<right>") {
+    digitalWrite(ledPin, HIGH); // Turn on LED
+    MyBTModule.println("LEDRIGHT is turned on\n"); // Then send status message to Android
     msg = ""; // reset command
   }
-
-
+  else if (msg == "<down>") {
+    digitalWrite(ledPin, HIGH); // Turn on LED
+    MyBTModule.println("LEDDOWN is turned on\n"); // Then send status message to Android
+    msg = ""; // reset command
+  }
+  else if (msg == "<stop>") {
+    digitalWrite(ledPin, LOW); // Turn off LED
+    MyBTModule.println("LED's are turned off\n"); // Then send status message to Android
+    msg = ""; // reset command
+  }
 }
