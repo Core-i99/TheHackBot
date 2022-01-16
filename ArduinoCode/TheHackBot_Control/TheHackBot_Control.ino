@@ -8,7 +8,7 @@ SoftwareSerial MyBTModule(3, 2); // RX & TX pins
 
 const int ledPin = 13; // Built in LED in Arduino board
 
-String msg, cmd;
+String msg;
 
 void setup() {
   // Initialization
