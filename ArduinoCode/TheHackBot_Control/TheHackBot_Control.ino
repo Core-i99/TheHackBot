@@ -33,30 +33,30 @@ void loop() {
 
   //TODO: make switch
   if (msg == '1') {
-    digitalWrite(ledUP, HIGH); // Turn on LED
+    digitalWrite(ledUP, 1); // Turn on LED
     MyBTModule.println("LEDUP is turned on\n"); // Then send status message to Android
     msg = ' ';
   }
   else if (msg == '2') {
-    digitalWrite(ledLEFT, HIGH); // Turn on LED
+    digitalWrite(ledLEFT, 1); // Turn on LED
     MyBTModule.println("LEDLEFT is turned on\n"); // Then send status message to Android
     msg = ' ';
   }
   else if (msg == '3') {
-    digitalWrite(ledRIGHT, HIGH); // Turn on LED
+    digitalWrite(ledRIGHT, 1); // Turn on LED
     MyBTModule.println("LEDRIGHT is turned on\n"); // Then send status message to Android
     msg = ' ';
   }
   else if (msg == '4') {
-    digitalWrite(ledDOWN, HIGH); // Turn on LED
+    digitalWrite(ledDOWN, 1); // Turn on LED
     MyBTModule.println("LEDDOWN is turned on\n"); // Then send status message to Android
     msg = ' ';
   }
   else if (msg == '5') {
-    digitalWrite(ledUP, LOW); // Turn off LED
-    digitalWrite(ledLEFT, LOW); // Turn off LED
-    digitalWrite(ledRIGHT, LOW); // Turn off LED
-    digitalWrite(ledDOWN, LOW); // Turn off LED
+    digitalWrite(ledUP, 0); // Turn off LED
+    digitalWrite(ledLEFT, 0); // Turn off LED
+    digitalWrite(ledRIGHT, 0); // Turn off LED
+    digitalWrite(ledDOWN, 0); // Turn off LED
     MyBTModule.println("LED's are turned off\n"); // Then send status message to Android
     msg = ' ';
   }
