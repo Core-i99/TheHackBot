@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         UpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                connectedThread.write("<up>");
+                connectedThread.write("1");
                 Log.e("Status", "Ticked turn on");
             }
         });
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         StopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                connectedThread.write("<stop>");
+                connectedThread.write("5");
                 Log.e("Status", "Ticked turn off");
             }
         });
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
         LeftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                connectedThread.write("<left>");
+                connectedThread.write("2");
                 Log.e("Status", "Ticked left");
             }
         });
@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
         RightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                connectedThread.write("<right>");
+                connectedThread.write("3");
                 Log.e("Status", "Ticked right");
             }
         });
@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
         DownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                connectedThread.write("<down>");
+                connectedThread.write("4");
                 Log.e("Status", "Ticked down");
             }
         });
