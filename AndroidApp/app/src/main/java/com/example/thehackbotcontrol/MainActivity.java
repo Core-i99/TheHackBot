@@ -223,8 +223,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 
     /* ============================ Thread to Create Bluetooth Connection =================================== */
