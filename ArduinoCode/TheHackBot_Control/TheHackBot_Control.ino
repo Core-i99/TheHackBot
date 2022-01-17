@@ -1,7 +1,7 @@
-/*   
-HC05 - Bluetooth module 
-© Stijn Rombouts - 2021
-*/ 
+/*
+  HC05 - Bluetooth module
+  © Stijn Rombouts - 2021
+*/
 
 #include <SoftwareSerial.h>
 SoftwareSerial MyBTModule(3, 2); // RX & TX pins
