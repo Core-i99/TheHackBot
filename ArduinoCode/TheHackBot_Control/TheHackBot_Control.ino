@@ -3,6 +3,10 @@
   © Stijn Rombouts - 2021
 */
 
+/*
+  Code used to control 4 led's
+*/
+
 #include <SoftwareSerial.h>
 SoftwareSerial BTModule(3, 2); // RX & TX pins
 
@@ -20,7 +24,7 @@ void setup() {
   pinMode(ledRIGHT, OUTPUT);
   pinMode(ledDOWN, OUTPUT);
   BTModule.begin(9600); // Communication rate of the Bluetooth Module
-  Serial.begin(9600); 
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -51,9 +55,9 @@ void loop() {
         digitalWrite(ledDOWN, 0); // Turn off LEDDOWN
         BTModule.println("LED's are turned off\n"); // Send status message to Android
         break;
-     default:
+      default:
         BTModule.println("That's not an option!");
-        break;   
+        break;
     }
   }
 }
