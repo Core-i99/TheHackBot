@@ -24,31 +24,25 @@ void setup() {
 }
 
 void loop() {
-
-  // To read message received from other Bluetooth Device
+  // Read message received from other Bluetooth Device
   if (BTModule.available() > 0) { // Check if there is data coming
-    msg = BTModule.read(); // Read the message as String
-    Serial.println("Android Command: " + msg);
+    msg = BTModule.read(); // Read the message
     switch (msg) {
       case '1':
         digitalWrite(ledUP, 1); // Turn on LED
         BTModule.println("LEDUP is turned on\n"); // Then send status message to Android
-        msg = ' ';
         break;
       case '2':
         digitalWrite(ledLEFT, 1); // Turn on LED
         BTModule.println("LEDLEFT is turned on\n"); // Then send status message to Android
-        msg = ' ';
         break;
       case '3':
         digitalWrite(ledRIGHT, 1); // Turn on LED
         BTModule.println("LEDRIGHT is turned on\n"); // Then send status message to Android
-        msg = ' ';
         break;
       case '4':
         digitalWrite(ledDOWN, 1); // Turn on LED
         BTModule.println("LEDDOWN is turned on\n"); // Then send status message to Android
-        msg = ' ';
         break;
       case '5':
         digitalWrite(ledUP, 0); // Turn off LED
@@ -56,7 +50,6 @@ void loop() {
         digitalWrite(ledRIGHT, 0); // Turn off LED
         digitalWrite(ledDOWN, 0); // Turn off LED
         BTModule.println("LED's are turned off\n"); // Then send status message to Android
-        msg = ' ';
         break;
      default:
         BTModule.println("That's not an option!");
