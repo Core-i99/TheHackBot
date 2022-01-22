@@ -157,13 +157,13 @@ public class MainActivity extends AppCompatActivity {
         //upButton
         UpButton.setOnClickListener(view -> {
             connectedThread.write("1");
-            Log.e("Status", "Ticked turn on");
+            Log.e("Status", "Ticked up");
         });
 
         //Stop Button
         StopButton.setOnClickListener(view -> {
             connectedThread.write("5");
-            Log.e("Status", "Ticked turn off");
+            Log.e("Status", "Ticked stop");
         });
 
         //leftButton
