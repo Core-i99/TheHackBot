@@ -34,8 +34,8 @@
         app:srcCompat="@drawable/ic_back"
         app:tint="#FFFFFF" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewDevice"
+    <ListView
+        android:id="@+id/DeviceListPaired"
         android:layout_width="0dp"
         android:layout_height="280dp"
         android:layout_marginStart="8dp"
@@ -64,11 +64,11 @@
         android:textSize="20sp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewDevice"
+        app:layout_constraintTop_toBottomOf="@+id/DeviceListPaired"
   />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewDevice2"
+    <ListView
+        android:id="@+id/DeviceListDiscovered"
         android:layout_width="0dp"
         android:layout_height="280dp"
         android:layout_marginStart="8dp"
