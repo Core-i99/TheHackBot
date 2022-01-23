@@ -87,6 +87,17 @@
         android:textSize="20dp"
         />
 
+    <Button
+        android:id="@+id/DiscoverDevices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Discovery"
+        android:textSize="12dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="10dp"
+        app:layout_constraintTop_toTopOf="@id/textDiscovered"
+        app:layout_constraintBottom_toBottomOf="@id/textDiscovered"/>
+
     <ListView
         android:id="@+id/discovered_devices_list_view"
         android:layout_width="wrap_content"
