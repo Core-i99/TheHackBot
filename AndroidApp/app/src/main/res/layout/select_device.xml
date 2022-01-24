@@ -90,7 +90,7 @@
     <Button
         android:id="@+id/DiscoverDevices"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
         android:text="Start Discovery"
         android:textSize="12dp"
         app:layout_constraintRight_toRightOf="parent"
