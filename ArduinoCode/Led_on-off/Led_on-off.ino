@@ -27,11 +27,11 @@ void loop() {
     msg = BTModule.read(); // Read the message
     switch (msg) {
       case '1':
-        digitalWrite(led, 1); // Turn on LEDUP
+        digitalWrite(led, 1); // Turn on LED
         BTModule.println("LED is turned on\n"); // Send status message to Android
         break;
       case '2':
-        digitalWrite(led, 0); // Turn on LEDLEFT
+        digitalWrite(led, 0); // Turn off LED
         BTModule.println("LED is turned off\n"); // Send status message to Android
         break;
       default:
