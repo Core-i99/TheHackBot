@@ -1,0 +1,23 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory app:title="Bluetooth Commands">
+        <EditTextPreference
+            app:key="Up Button"
+            app:title="Up"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="Left Button"
+            app:title="Left"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="Right Button"
+            app:title="Right"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="Down Button"
+            app:title="Down"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+</PreferenceScreen>

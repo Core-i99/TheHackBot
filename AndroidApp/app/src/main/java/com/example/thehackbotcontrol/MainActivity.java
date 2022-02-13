@@ -60,8 +60,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ImageButton about = (ImageButton) findViewById(R.id.About);
+        ImageButton settings  = (ImageButton) findViewById(R.id.settings);
         about.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(intent);
+        });
+        settings.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         });
 

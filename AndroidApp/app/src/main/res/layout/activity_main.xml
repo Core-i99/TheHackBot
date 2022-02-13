@@ -71,6 +71,22 @@
         app:tint="@color/white" />
 
     <ImageButton
+        android:id="@+id/settings"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@color/colorPrimaryDark"
+        android:contentDescription="@string/about"
+        android:paddingHorizontal="2dp"
+        android:paddingVertical="2dp"
+        android:scaleType="fitCenter"
+        android:tintMode="src_in"
+        app:layout_constraintBottom_toBottomOf="@id/actionBar"
+        app:layout_constraintRight_toLeftOf="@id/About"
+        app:layout_constraintTop_toTopOf="@id/actionBar"
+        app:srcCompat="@drawable/ic_settings"
+        app:tint="@color/white" />
+
+    <ImageButton
         android:id="@+id/UpButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
