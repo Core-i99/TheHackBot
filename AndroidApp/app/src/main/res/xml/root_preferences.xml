@@ -3,21 +3,27 @@
         <EditTextPreference
             app:key="Up Button"
             app:title="Up"
-            app:useSimpleSummaryProvider="true" />
-
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="1" />
         <EditTextPreference
             app:key="Left Button"
             app:title="Left"
-            app:useSimpleSummaryProvider="true" />
-
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="2"/>
         <EditTextPreference
             app:key="Right Button"
             app:title="Right"
-            app:useSimpleSummaryProvider="true" />
-
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="3"/>
         <EditTextPreference
             app:key="Down Button"
             app:title="Down"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="4"/>
+        <EditTextPreference
+            app:key="Stop Button"
+            app:title="Stop"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="5"/>
     </PreferenceCategory>
 </PreferenceScreen>
