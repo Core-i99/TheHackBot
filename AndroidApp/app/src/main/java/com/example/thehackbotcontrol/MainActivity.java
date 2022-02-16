@@ -19,11 +19,14 @@ package com.example.thehackbotcontrol;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
+
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -34,6 +37,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.io.IOException;
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton about = (ImageButton) findViewById(R.id.About);
         ImageButton settings  = (ImageButton) findViewById(R.id.settings);
+        Button ReadSettings = (Button) findViewById(R.id.readsettings);
         about.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
@@ -68,6 +73,20 @@ public class MainActivity extends AppCompatActivity {
         settings.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
+        });
+
+        ReadSettings.setOnClickListener(v -> {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            String UpButtonCommand = prefs.getString("Up Button","1");
+            String LeftButtonCommand = prefs.getString("Left Button","2");
+            String RightButtonCommand = prefs.getString("Right Button","3");
+            String DownButtonCommand = prefs.getString("Down Button","4");
+            String StopButtonCommand = prefs.getString("Stop Button", "5");
+            Log.e("Status", "Got Up Button value from settings: " + UpButtonCommand);
+            Log.e("Status", "Got Left Button value from settings: " + LeftButtonCommand);
+            Log.e("Status", "Got Right Button value from settings: " + RightButtonCommand);
+            Log.e("Status", "Got Down Button value from settings: " + DownButtonCommand);
+            Log.e("Status", "Got Down Button value from settings: " + StopButtonCommand);
         });
 
         // UI Initialization
