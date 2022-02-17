@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton about = (ImageButton) findViewById(R.id.About);
         ImageButton settings  = (ImageButton) findViewById(R.id.settings);
-        Button ReadSettings = (Button) findViewById(R.id.readsettings);
         about.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
@@ -73,10 +72,6 @@ public class MainActivity extends AppCompatActivity {
         settings.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
-        });
-
-        ReadSettings.setOnClickListener(view -> {
-            Connected = 1;
         });
 
         // UI Initialization
@@ -238,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
     /* ============================ Thread to Create Bluetooth Connection =================================== */
     public static class CreateConnectThread extends Thread {
 
+        @SuppressLint("MissingPermission")
         public CreateConnectThread(BluetoothAdapter bluetoothAdapter, String address) {
             /*
             Use a temporary object that is later assigned to mmSocket
@@ -245,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
              */
             BluetoothDevice bluetoothDevice = bluetoothAdapter.getRemoteDevice(address);
             BluetoothSocket tmp = null;
-            UUID uuid = bluetoothDevice.getUuids()[0].getUuid();
+            @SuppressLint("MissingPermission") UUID uuid = bluetoothDevice.getUuids()[0].getUuid();
 
             try {
                 /*
@@ -262,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
             mmSocket = tmp;
         }
 
+        @SuppressLint("MissingPermission")
         public void run() {
             // Cancel discovery because it otherwise slows down the connection.
             BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
