@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public static BluetoothSocket mmSocket;
     public static ConnectedThread connectedThread;
     public static CreateConnectThread createConnectThread;
-
+    private int Connected = 0;
     private final static int CONNECTING_STATUS = 1; // used in bluetooth handler to identify message status
     private final static int MESSAGE_READ = 2; // used in bluetooth handler to identify message update
 
@@ -75,24 +75,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        ReadSettings.setOnClickListener(v -> {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            String UpButtonCommand = prefs.getString("Up Button","1");
-            String LeftButtonCommand = prefs.getString("Left Button","2");
-            String RightButtonCommand = prefs.getString("Right Button","3");
-            String DownButtonCommand = prefs.getString("Down Button","4");
-            String StopButtonCommand = prefs.getString("Stop Button", "5");
-            Log.e("Status", "Got Up Button value from settings: " + UpButtonCommand);
-            Log.e("Status", "Got Left Button value from settings: " + LeftButtonCommand);
-            Log.e("Status", "Got Right Button value from settings: " + RightButtonCommand);
-            Log.e("Status", "Got Down Button value from settings: " + DownButtonCommand);
-            Log.e("Status", "Got Down Button value from settings: " + StopButtonCommand);
+        ReadSettings.setOnClickListener(view -> {
+            Connected = 1;
         });
 
         // UI Initialization
         final Button buttonConnect = findViewById(R.id.buttonConnect);
         final ImageButton UpButton = findViewById(R.id.UpButton);
-        UpButton.setEnabled(false);
+        UpButton.setEnabled(true);
         final ImageButton StopButton = findViewById(R.id.Stop);
         StopButton.setEnabled(false);
         final ImageButton LeftButton = findViewById(R.id.Left);
@@ -110,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         final ProgressBar progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
         final TextView textViewInfo = findViewById(R.id.textViewInfo);
-        
+
         // If a bluetooth device has been selected from SelectDeviceActivity
         deviceName = getIntent().getStringExtra("deviceName");
         if (deviceName != null){
@@ -129,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         handler = new Handler(Looper.getMainLooper()) {
+
             @SuppressLint("SetTextI18n")
             @Override
             public void handleMessage(Message msg){
@@ -138,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
                         switch(msg.arg1){
                             case 1:
                                 toolbar.setSubtitle("Connected to " + deviceName);
+                                Connected = 1;
                                 progressBar.setVisibility(View.GONE);
                                 buttonConnect.setEnabled(true);
                                 UpButton.setEnabled(true);
@@ -190,43 +182,57 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        //upButton
         UpButton.setOnClickListener(view -> {
-            connectedThread.write("1");
-            Log.e("Status", "Ticked up");
+            if (Connected == 1){
+                connectedThread.write(prefs.getString("Up Button","1"));
+                Log.e("Status", "Ticked up");
+            }
+            else{ NotYetConnected(); }
         });
 
-        //Stop Button
         StopButton.setOnClickListener(view -> {
-            connectedThread.write("5");
-            Log.e("Status", "Ticked stop");
+            if (Connected == 1){
+                connectedThread.write(prefs.getString("Stop Button","5"));
+                Log.e("Status", "Ticked stop");
+            }
+            else{ NotYetConnected(); }
         });
 
-        //leftButton
         LeftButton.setOnClickListener(view -> {
-            connectedThread.write("2");
-            Log.e("Status", "Ticked left");
+            if (Connected == 1){
+                connectedThread.write(prefs.getString("Left Button","2"));
+                Log.e("Status", "Ticked left");
+            }
+            else{ NotYetConnected(); }
         });
 
-        //Right Button
         RightButton.setOnClickListener(view -> {
-            connectedThread.write("3");
-            Log.e("Status", "Ticked right");
+            if (Connected == 1){
+                connectedThread.write(prefs.getString("Right Button","3"));
+                Log.e("Status", "Ticked right");
+            }
+            else{ NotYetConnected(); }
         });
 
-        //Down Button
         DownButton.setOnClickListener(view -> {
-            connectedThread.write("4");
-            Log.e("Status", "Ticked down");
+            if (Connected == 1){
+                connectedThread.write(prefs.getString("Down Button","4"));
+                Log.e("Status", "Ticked down");
+            }
+            else{ NotYetConnected(); }
         });
 
         // Select Bluetooth Device
         buttonConnect.setOnClickListener(view -> {
-            // Move to adapter list
             Intent intent = new Intent(MainActivity.this, SelectDeviceActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void NotYetConnected() {
+        Toast.makeText(getApplicationContext(),"First connect to a device", Toast.LENGTH_SHORT).show();
     }
 
     /* ============================ Thread to Create Bluetooth Connection =================================== */

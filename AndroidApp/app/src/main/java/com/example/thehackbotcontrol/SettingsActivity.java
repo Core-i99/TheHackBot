@@ -1,11 +1,14 @@
 package com.example.thehackbotcontrol;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -13,8 +16,18 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
+
+        Button ResetSettings = (Button) findViewById(R.id.resetsettings);
         ImageButton back = (ImageButton) findViewById(R.id.SettingsSelectDevice);
         back.setOnClickListener(v -> finish());
+
+        ResetSettings.setOnClickListener(v -> {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            prefs.edit().clear().commit(); //reload default values
+            finish(); //reload the settings activity, otherwise the values won't get updated
+            startActivity(getIntent());
+        });
+
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
