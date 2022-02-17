@@ -86,16 +86,6 @@
         app:srcCompat="@drawable/ic_settings"
         app:tint="@color/white" />
 
-    <Button
-        android:text="read settings"
-        android:id="@+id/readsettings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@id/settings"
-        app:layout_constraintTop_toBottomOf="@id/actionBar"
-        app:srcCompat="@drawable/ic_settings"
-        app:tint="@color/white" />
-
     <ImageButton
         android:id="@+id/UpButton"
         android:layout_width="50dp"
@@ -174,6 +164,5 @@
         app:layout_constraintTop_toTopOf="@id/UpButton"
         app:srcCompat="@drawable/ic_stop"
         tools:ignore="HardcodedText,ImageContrastCheck" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
