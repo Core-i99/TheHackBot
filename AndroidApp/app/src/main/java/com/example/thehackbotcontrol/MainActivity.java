@@ -143,28 +143,29 @@ public class MainActivity extends AppCompatActivity {
 
                     case MESSAGE_READ:
                         String arduinoMsg = msg.obj.toString(); // Read message from Arduino
-                        switch (arduinoMsg.toLowerCase()){
-                            case "ledup is turned on":
+                        switch (arduinoMsg){
+                            case "FORWARD":
                                 StopButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 UpButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
+                                Log.e("STATUS", "FOO");
                                 break;
-                            case "ledleft is turned on":
+                            case "LEFT":
                                 StopButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 LeftButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
-                            case "ledright is turned on":
+                            case "RIGHT":
                                 StopButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 RightButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
-                            case "leddown is turned on":
+                            case "BACKWARDS":
                                 StopButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 DownButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
-                            case "led's are turned off":
+                            case "STOP":
                                 StopButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 UpButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 LeftButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
