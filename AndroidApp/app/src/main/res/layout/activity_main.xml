@@ -165,5 +165,4 @@
         app:srcCompat="@drawable/ic_stop"
         tools:ignore="HardcodedText,ImageContrastCheck" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

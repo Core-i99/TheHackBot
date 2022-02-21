@@ -19,11 +19,14 @@ package com.example.thehackbotcontrol;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
+
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -34,6 +37,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.io.IOException;
@@ -50,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public static BluetoothSocket mmSocket;
     public static ConnectedThread connectedThread;
     public static CreateConnectThread createConnectThread;
-
+    private int Connected = 0;
     private final static int CONNECTING_STATUS = 1; // used in bluetooth handler to identify message status
     private final static int MESSAGE_READ = 2; // used in bluetooth handler to identify message update
 
@@ -73,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         // UI Initialization
         final Button buttonConnect = findViewById(R.id.buttonConnect);
         final ImageButton UpButton = findViewById(R.id.UpButton);
-        UpButton.setEnabled(false);
+        UpButton.setEnabled(true);
         final ImageButton StopButton = findViewById(R.id.Stop);
         StopButton.setEnabled(false);
         final ImageButton LeftButton = findViewById(R.id.Left);
@@ -91,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         final ProgressBar progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
         final TextView textViewInfo = findViewById(R.id.textViewInfo);
-        
+
         // If a bluetooth device has been selected from SelectDeviceActivity
         deviceName = getIntent().getStringExtra("deviceName");
         if (deviceName != null){
@@ -110,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         handler = new Handler(Looper.getMainLooper()) {
+
             @SuppressLint("SetTextI18n")
             @Override
             public void handleMessage(Message msg){
@@ -119,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                         switch(msg.arg1){
                             case 1:
                                 toolbar.setSubtitle("Connected to " + deviceName);
+                                Connected = 1;
                                 progressBar.setVisibility(View.GONE);
                                 buttonConnect.setEnabled(true);
                                 UpButton.setEnabled(true);
@@ -137,28 +143,29 @@ public class MainActivity extends AppCompatActivity {
 
                     case MESSAGE_READ:
                         String arduinoMsg = msg.obj.toString(); // Read message from Arduino
-                        switch (arduinoMsg.toLowerCase()){
-                            case "ledup is turned on":
+                        switch (arduinoMsg){
+                            case "FORWARD":
                                 StopButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 UpButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
+                                Log.e("STATUS", "FOO");
                                 break;
-                            case "ledleft is turned on":
+                            case "LEFT":
                                 StopButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 LeftButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
-                            case "ledright is turned on":
+                            case "RIGHT":
                                 StopButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 RightButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
-                            case "leddown is turned on":
+                            case "BACKWARDS":
                                 StopButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 DownButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
-                            case "led's are turned off":
+                            case "STOP":
                                 StopButton.setBackgroundColor(getResources().getColor(R.color.colorOn));
                                 UpButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
                                 LeftButton.setBackgroundColor(getResources().getColor(R.color.colorOff));
@@ -171,48 +178,63 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        //upButton
         UpButton.setOnClickListener(view -> {
-            connectedThread.write("1");
-            Log.e("Status", "Ticked up");
+            if (Connected == 1){
+                connectedThread.write(prefs.getString("Up Button","1"));
+                Log.e("Status", "Ticked up");
+            }
+            else{ NotYetConnected(); }
         });
 
-        //Stop Button
         StopButton.setOnClickListener(view -> {
-            connectedThread.write("5");
-            Log.e("Status", "Ticked stop");
+            if (Connected == 1){
+                connectedThread.write(prefs.getString("Stop Button","5"));
+                Log.e("Status", "Ticked stop");
+            }
+            else{ NotYetConnected(); }
         });
 
-        //leftButton
         LeftButton.setOnClickListener(view -> {
-            connectedThread.write("2");
-            Log.e("Status", "Ticked left");
+            if (Connected == 1){
+                connectedThread.write(prefs.getString("Left Button","2"));
+                Log.e("Status", "Ticked left");
+            }
+            else{ NotYetConnected(); }
         });
 
-        //Right Button
         RightButton.setOnClickListener(view -> {
-            connectedThread.write("3");
-            Log.e("Status", "Ticked right");
+            if (Connected == 1){
+                connectedThread.write(prefs.getString("Right Button","3"));
+                Log.e("Status", "Ticked right");
+            }
+            else{ NotYetConnected(); }
         });
 
-        //Down Button
         DownButton.setOnClickListener(view -> {
-            connectedThread.write("4");
-            Log.e("Status", "Ticked down");
+            if (Connected == 1){
+                connectedThread.write(prefs.getString("Down Button","4"));
+                Log.e("Status", "Ticked down");
+            }
+            else{ NotYetConnected(); }
         });
 
         // Select Bluetooth Device
         buttonConnect.setOnClickListener(view -> {
-            // Move to adapter list
             Intent intent = new Intent(MainActivity.this, SelectDeviceActivity.class);
             startActivity(intent);
         });
     }
 
+    private void NotYetConnected() {
+        Toast.makeText(getApplicationContext(),"First connect to a device", Toast.LENGTH_SHORT).show();
+    }
+
     /* ============================ Thread to Create Bluetooth Connection =================================== */
     public static class CreateConnectThread extends Thread {
 
+        @SuppressLint("MissingPermission")
         public CreateConnectThread(BluetoothAdapter bluetoothAdapter, String address) {
             /*
             Use a temporary object that is later assigned to mmSocket
@@ -220,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
              */
             BluetoothDevice bluetoothDevice = bluetoothAdapter.getRemoteDevice(address);
             BluetoothSocket tmp = null;
-            UUID uuid = bluetoothDevice.getUuids()[0].getUuid();
+            @SuppressLint("MissingPermission") UUID uuid = bluetoothDevice.getUuids()[0].getUuid();
 
             try {
                 /*
@@ -237,6 +259,7 @@ public class MainActivity extends AppCompatActivity {
             mmSocket = tmp;
         }
 
+        @SuppressLint("MissingPermission")
         public void run() {
             // Cancel discovery because it otherwise slows down the connection.
             BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();

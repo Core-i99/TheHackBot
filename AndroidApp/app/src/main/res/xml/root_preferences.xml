@@ -1,29 +1,36 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
-    <PreferenceCategory app:title="Bluetooth Commands">
+    <PreferenceCategory app:title="Bluetooth Commands"
+        app:iconSpaceReserved="false"
+        >
         <EditTextPreference
             app:key="Up Button"
             app:title="Up"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="1" />
+            app:defaultValue="1"
+            app:iconSpaceReserved="false" />
         <EditTextPreference
             app:key="Left Button"
             app:title="Left"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="2"/>
+            app:defaultValue="2"
+            app:iconSpaceReserved="false" />
         <EditTextPreference
             app:key="Right Button"
             app:title="Right"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="3"/>
+            app:defaultValue="3"
+            app:iconSpaceReserved="false" />
         <EditTextPreference
             app:key="Down Button"
             app:title="Down"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="4"/>
+            app:defaultValue="4"
+            app:iconSpaceReserved="false" />
         <EditTextPreference
             app:key="Stop Button"
             app:title="Stop"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="5"/>
+            app:defaultValue="5"
+            app:iconSpaceReserved="false" />
     </PreferenceCategory>
 </PreferenceScreen>
