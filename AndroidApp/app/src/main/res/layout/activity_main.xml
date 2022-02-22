@@ -165,4 +165,15 @@
         app:srcCompat="@drawable/ic_stop"
         tools:ignore="HardcodedText,ImageContrastCheck" />
 
+    <com.google.android.material.slider.Slider
+        android:id="@+id/continuousSlider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stepSize="1"
+        android:value="100.0"
+        android:valueFrom="0.0"
+        android:valueTo="255.0"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInfo"
+        android:layout_marginTop="50dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

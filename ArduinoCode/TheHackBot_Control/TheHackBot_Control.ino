@@ -42,21 +42,21 @@ void loop() {
     msg = BTModule.read(); // Read the message
     switch (msg) {
       case '1': //forward
-        digitalWrite(M1_2, 1); 
-        digitalWrite(M2_1, 1); 
+        analogWrite(M1_2, 100); 
+        analogWrite(M2_1, 100); 
         BTModule.println("FORWARD\n"); // Send status message to Android
         break;
       case '2': //left
-        digitalWrite(M2_1, 1); 
+        analogWrite(M2_1, 70); 
         BTModule.println("LEFT\n"); // Send status message to Android
         break;
       case '3': //right
-        digitalWrite(M1_2, 1); 
+        analogWrite(M1_2, 70); 
         BTModule.println("RIGHT\n"); // Send status message to Android
         break;
       case '4': //back
-        digitalWrite(M2_2, 1); 
-        digitalWrite(M1_1, 1); 
+        analogWrite(M2_2, 100); 
+        analogWrite(M1_1, 100); 
         BTModule.println("BACKWARDS\n"); // Send status message to Android
         break;
       case '5': //stop

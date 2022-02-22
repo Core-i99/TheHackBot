@@ -47,9 +47,12 @@ import java.util.UUID;
 
 import static android.content.ContentValues.TAG;
 
+import com.google.android.material.slider.Slider;
+
 public class MainActivity extends AppCompatActivity {
 
     private String deviceName = null;
+    float SliderValue;
     public static Handler handler;
     public static BluetoothSocket mmSocket;
     public static ConnectedThread connectedThread;
@@ -75,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // UI Initialization
+        final Slider Slider = findViewById(R.id.continuousSlider);
         final Button buttonConnect = findViewById(R.id.buttonConnect);
         final ImageButton UpButton = findViewById(R.id.UpButton);
         UpButton.setEnabled(true);
@@ -179,6 +183,12 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        Slider.addOnChangeListener((slider, value, fromUser) -> {
+                    SliderValue = Slider.getValue();
+                    Log.d("Status", "Slider value2: " +  SliderValue);
+                });
+
 
         UpButton.setOnClickListener(view -> {
             if (Connected == 1){
