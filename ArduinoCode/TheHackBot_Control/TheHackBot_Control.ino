@@ -14,7 +14,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+*/
 
 #include <SoftwareSerial.h>
 SoftwareSerial BTModule(3, 2); // RX & TX pins
